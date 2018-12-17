@@ -1,44 +1,17 @@
 #include "bits/stdc++.h"
 
-#define REP(i,n) for(ll i=0;i<n;++i)
-#define RREP(i,n) for(ll i=n-1;i>=0;--i)
-#define FOR(i,m,n) for(ll i=m;i<n;++i)
-#define RFOR(i,m,n) for(ll i=n-1;i>=m;--i)
-#define ALL(v) (v).begin(),(v).end()
-#define PB(a) push_back(a)
-#define UNIQUE(v) v.erase(unique(ALL(v),v.end()));
-#define DUMP(v) REP(i, (v).size()) { cout << v[i]; if (i != v.size() - 1)cout << " "; else cout << endl; }
-#define INF 1000000001ll
-#define MOD 1000000007ll
-#define EPS 1e-9
-
-const int dx[8] = { 1,1,0,-1,-1,-1,0,1 };
-const int dy[8] = { 0,1,1,1,0,-1,-1,-1 };
-
-
-using namespace std;
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<ll> vl;
-typedef vector<vi> vvi;
-typedef vector<vl> vvl;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
-
-//////////////////////////////////////////////////
-
 
 ///n=1はバグる！！！///
 struct LCA {
 	int n;
-	vvi parent;//parent[i][k]:2^k-th parent of i-th node
-	vi depth;//depth[i]:depth of i-th node
+	std::vector<std::vector<int>> parent;//parent[i][k]:2^k-th parent of i-th node
+	std::vector<int> depth;//depth[i]:depth of i-th node
 
-	LCA(const vvi &graph, const int  N, int root)
-		:n(N), depth(N), parent(n, vi(log2(n) + 1, -1)) {
+	LCA(std::vector<std::vector<int>> &graph, int _n, int root)
+		:n(_n), depth(n), parent(n, std::vector<int>(log2(n) + 1, -1)) {
 		dfs(graph, root, -1, 0);
-		REP(k, int(log2(n))) {
-			REP(i, n) {
+		for (int k = 0; k<int(log2(n)); ++k) {
+			for (int i = 0; i < n; ++i) {
 				if (parent[i][k] != -1) {
 					parent[i][k + 1] = parent[parent[i][k]][k];
 				}
@@ -46,22 +19,22 @@ struct LCA {
 		}
 	}
 
-	void dfs(const vvi &graph, int v, int p, int d) {//graph,current node,previous node,depth
+	void dfs(const std::vector<std::vector<int>> &graph, int v, int p, int d) {//graph,current node,previous node,depth
 		depth[v] = d;
 		parent[v][0] = p;
-		REP(i, graph[v].size()) {
+		for (int i = 0; i < graph[v].size(); ++i) {
 			if (graph[v][i] != p)dfs(graph, graph[v][i], v, d + 1);
 		}
 	}
 
 	int get(int v, int w) {//lca of v and w
-		if (depth[v] < depth[w])swap(v, w);
+		if (depth[v] < depth[w])std::swap(v, w);
 		int dif = depth[v] - depth[w];
-		REP(i, log2(n) + 1) {
-			if (1 << i&dif)v = parent[v][i];
+		for (int i = 0; i < log2(n) + 1; ++i) {
+			if (1 << i & dif)v = parent[v][i];
 		}
 		if (v == w)return v;
-		RREP(i, log2(n)) {
+		for (int i = log2(n) - 1; i >= 0; --i) {
 			if (parent[v][i] != parent[w][i] && parent[v][i] != -1) {
 				v = parent[v][i];
 				w = parent[w][i];

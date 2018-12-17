@@ -1,11 +1,10 @@
-#include <vector>
+#include "bits/stdc++.h"
 
-using namespace std;
 struct Scc {
 	int n;
-	vector<vector<int>> g,
+	std::vector<std::vector<int>> g,
 		rg;//逆向きのグラフ
-	vector<int> cmp,//cmp[i]:頂点iが属する強連結成分の番号
+	std::vector<int> cmp,//cmp[i]:頂点iが属する強連結成分の番号
 		visited,
 		num;//帰りがけ順で頂点が入る
 	Scc(int N) {

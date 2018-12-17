@@ -1,70 +1,53 @@
 #include "bits/stdc++.h"
 
-#define REP(i,n) for(ll i=0;i<n;++i)
-#define RREP(i,n) for(ll i=n-1;i>=0;--i)
-#define FOR(i,m,n) for(ll i=m;i<n;++i)
-#define RFOR(i,m,n) for(ll i=n-1;i>=m;--i)
-#define ALL(v) (v).begin(),(v).end()
-#define PB(a) push_back(a)
-#define UNIQUE(v) v.erase(unique(ALL(v),v.end()));
-#define DUMP(v) REP(i, (v).size()) { cout << v[i]; if (i != v.size() - 1)cout << " "; else cout << endl; }
-#define INF 1000000001ll
-#define MOD 1000000007ll
-#define EPS 1e-9
-
-const int dx[8] = { 1,1,0,-1,-1,-1,0,1 };
-const int dy[8] = { 0,1,1,1,0,-1,-1,-1 };
-
-
-using namespace std;
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<ll> vl;
-typedef vector<vi> vvi;
-typedef vector<vl> vvl;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
-//////////////////////////////////////
 class Kitamasa {
 	int k;
-	vl cor;
+	static constexpr int m = 1e9 + 7;
+	std::vector<long long> cor;
 public:
-	Kitamasa(int K, vl v) :k(K), cor(v) {}
+	Kitamasa(std::vector<long long> cor_)
+		:k(cor_.size()), cor(cor_)
+	{}
 
-	void adv(vl &v) {
-		vl ret(k);
+	void adv(std::vector<long long> &v) {
+		std::vector<long long> ret(k);
 		ret[0] = 0;
-		REP(i, k - 1) {
+		for (int i = 0; i < k - 1; ++i) {
 			ret[i + 1] = v[i];
 		}
-		REP(i, k) {
+		for (int i = 0; i < k; ++i) {
 			ret[i] += cor[i] * v[k - 1];
-			ret[i] %= MOD;
+			ret[i] %= m;
 		}
 		v = ret;
 	}
 
-	void dbl(vl &v) {
-		vl tmp = v, ret(k, 0);
-		REP(i, k) {
-			REP(j, k) {
+	void dbl(std::vector<long long> &v) {
+		std::vector<long long> tmp = v, ret(k, 0);
+		for (int i = 0; i < k; ++i) {
+			for (int j = 0; j < k; ++j) {
 				ret[j] += tmp[j] * v[i];
-				ret[j] %= MOD;
+				ret[j] %= m;
 			}
 			adv(tmp);
 		}
 		v = ret;;
 	}
 
-	vl calc(int n) {
-		vl ret(k, 0);
+	long long calc(int n) {
+		std::vector<long long> ret(k, 0);
 		ret[0] = 1;
 		int j = 63;
-		while (!(1ll << j&n))j--;
-		RREP(i, j + 1) {
+		while (!(1ll << j & n))j--;
+		for (int i = j; i >= 0; --i) {
 			dbl(ret);
 			if (n&(1ll << i))adv(ret);
 		}
-		return ret;
+		long long ans = 0;
+		for (int i = 0; i < k; ++i) {
+			ans += cor[i] * ret[i];
+			ans %= m;
+		}
+		return ans;
 	}
 };
