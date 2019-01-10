@@ -10,20 +10,22 @@
 #define MOD 1000000007ll
 #define EPS 1e-9
 
-const int dx[8] = { 1,1,0,-1,-1,-1,0,1 };
-const int dy[8] = { 0,1,1,1,0,-1,-1,-1 };
+constexpr int dx[8] = { 1,1,0,-1,-1,-1,0,1 };
+constexpr int dy[8] = { 0,1,1,1,0,-1,-1,-1 };
 
 
 using namespace std;
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<ll> vl;
-typedef vector<vi> vvi;
-typedef vector<vl> vvl;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
 
+using ll = long long;
+using vi = vector<int>;
+using vl = vector<ll>;
+using vvi = vector<vi>;
+using vvl = vector<vl>;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
 
+template <class T> bool chmin(T &a, T b) { if (a > b) { a = b; return true; } return false; }
+template <class T> bool chmax(T &a, T b) { if (a < b) { a = b; return true; } return false; }
 
 int main() {
 	cin.tie(0);
