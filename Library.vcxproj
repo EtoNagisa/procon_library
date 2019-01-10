@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FenwickTree.cpp" />
     <ClCompile Include="FFT.cpp" />
     <ClCompile Include="Flow.cpp" />
     <ClCompile Include="Geometry.cpp" />
@@ -31,7 +32,6 @@
     <ClCompile Include="Mint.cpp" />
     <ClCompile Include="Scc.cpp" />
     <ClCompile Include="SegmentTree.cpp" />
-    <ClCompile Include="String.cpp" />
     <ClCompile Include="Template.cpp" />
     <ClCompile Include="UnionFind.cpp" />
   </ItemGroup>
