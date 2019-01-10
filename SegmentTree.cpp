@@ -2,10 +2,18 @@
 
 
 struct RMQ {
-	using t = int;
+	using t = long long;
 	const static t id = std::numeric_limits<t>::min();
 	static t f(const t &a, const t &b) {
 		return std::max(a, b);
+	}
+};
+
+struct RmQ {
+	using t = long long;
+	const static t id = std::numeric_limits<t>::max();
+	static t f(const t &a, const t &b) {
+		return std::min(a, b);
 	}
 };
 
@@ -30,19 +38,22 @@ struct SegmentTree {
 			nodes[k] = f(nodes[2 * k + 1], nodes[2 * k + 2]);
 		}
 	}
-	int query(int a, int b, int k, int l, int r) {
-		if (r <= a || b <= l)return id;
-		if (a <= l && r <= b)return nodes[k];
-		else {
-			int vl = query(a, b, 2 * k + 1, l, (r + l) / 2),
-				vr = query(a, b, 2 * k + 2, (r + l) / 2, r);
-			return f(vl, vr);
-		}
+	T query(int a, int b) {
+		return query(a, b, 0, 0, n);
 	}
 private:
 	int minp(int n) {
 		int ret = 1;
 		while (ret < n)ret *= 2;
 		return ret;
+	}
+	T query(int a, int b, int k, int l, int r) {
+		if (r <= a || b <= l)return id;
+		if (a <= l && r <= b)return nodes[k];
+		else {
+			T vl = query(a, b, 2 * k + 1, l, (r + l) / 2),
+				vr = query(a, b, 2 * k + 2, (r + l) / 2, r);
+			return f(vl, vr);
+		}
 	}
 };
