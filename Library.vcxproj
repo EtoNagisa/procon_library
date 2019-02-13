@@ -25,6 +25,7 @@
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="Kitamasa.cpp" />
+    <ClCompile Include="LazySegmentTree.cpp" />
     <ClCompile Include="LCA.cpp" />
     <ClCompile Include="LinkCutTree.cpp" />
     <ClCompile Include="LIS.cpp" />

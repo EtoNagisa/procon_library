@@ -25,6 +25,7 @@ struct SegmentTree {
 	function<T(T, T)> f = M::f;
 	T id = M::id;
 	std::vector<T> nodes;
+
 	SegmentTree(int _n) {
 		_n = minp(_n);
 		n = _n;
