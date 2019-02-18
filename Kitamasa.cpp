@@ -1,14 +1,29 @@
 #include "bits/stdc++.h"
 
 class Kitamasa {
-	int k;
-	static constexpr int m = 1e9 + 7;
-	std::vector<long long> cor;
 public:
-	Kitamasa(std::vector<long long> cor_)
-		:k(cor_.size()), cor(cor_)
-	{}
-
+	Kitamasa(std::vector<long long> _coe, std::vector<long long> _term)
+		:k(_coe.size()), coe(_coe), term(_term)
+	{
+		assert(_coe.size() == _term.size());
+	}
+	long long calc(long long n) {
+		std::vector<long long> ret(k, 0);
+		ret[0] = 1;
+		int j = 63;
+		while (!(1ll << j & n))j--;
+		for (int i = j; i >= 0; --i) {
+			dbl(ret);
+			if (n&(1ll << i))adv(ret);
+		}
+		long long ans = 0;
+		for (int i = 0; i < k; ++i) {
+			ans += coe[i] * ret[i];
+			ans %= m;
+		}
+		return ans;
+	}
+private:
 	void adv(std::vector<long long> &v) {
 		std::vector<long long> ret(k);
 		ret[0] = 0;
@@ -16,7 +31,7 @@ public:
 			ret[i + 1] = v[i];
 		}
 		for (int i = 0; i < k; ++i) {
-			ret[i] += cor[i] * v[k - 1];
+			ret[i] += term[i] * v[k - 1];
 			ret[i] %= m;
 		}
 		v = ret;
@@ -31,23 +46,10 @@ public:
 			}
 			adv(tmp);
 		}
-		v = ret;;
+		v = ret;
 	}
 
-	long long calc(int n) {
-		std::vector<long long> ret(k, 0);
-		ret[0] = 1;
-		int j = 63;
-		while (!(1ll << j & n))j--;
-		for (int i = j; i >= 0; --i) {
-			dbl(ret);
-			if (n&(1ll << i))adv(ret);
-		}
-		long long ans = 0;
-		for (int i = 0; i < k; ++i) {
-			ans += cor[i] * ret[i];
-			ans %= m;
-		}
-		return ans;
-	}
+	int k;
+	static constexpr int m = 1e9 + 7;
+	std::vector<long long> coe, term;
 };
