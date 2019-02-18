@@ -18,7 +18,7 @@ public:
 		}
 		long long ans = 0;
 		for (int i = 0; i < k; ++i) {
-			ans += coe[i] * ret[i];
+			ans += term[i] * ret[i];
 			ans %= m;
 		}
 		return ans;
@@ -31,7 +31,7 @@ private:
 			ret[i + 1] = v[i];
 		}
 		for (int i = 0; i < k; ++i) {
-			ret[i] += term[i] * v[k - 1];
+			ret[i] += coe[i] * v[k - 1];
 			ret[i] %= m;
 		}
 		v = ret;
