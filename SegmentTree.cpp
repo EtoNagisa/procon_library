@@ -26,9 +26,16 @@ struct SegmentTree {
 	T id = M::id;
 	std::vector<T> nodes;
 
+	SegmentTree(std::vector<T> v) {
+		int sz = (int)v.size();
+		n = 1; while (n < sz) n *= 2;
+		nodes.resize(2 * n - 1, id);
+		for (int i = 0; i < sz; i++) nodes[i + n - 1] = v[i];
+		for (int i = n - 2; i >= 0; i--) nodes[i] = f(op1(nodes[i * 2 + 1], nodes[i * 2 + 2]));
+	}
 	SegmentTree(int _n) {
-		_n = minp(_n);
-		n = _n;
+		n = 1;
+		while (n < _n)n *= 2;
 		nodes.resize(2 * n - 1, id);
 	}
 	void update(int k, T a) {
@@ -43,11 +50,6 @@ struct SegmentTree {
 		return query(a, b, 0, 0, n);
 	}
 private:
-	int minp(int n) {
-		int ret = 1;
-		while (ret < n)ret *= 2;
-		return ret;
-	}
 	T query(int a, int b, int k, int l, int r) {
 		if (r <= a || b <= l)return id;
 		if (a <= l && r <= b)return nodes[k];
