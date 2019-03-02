@@ -6,48 +6,49 @@ public:
 
 	Dice(std::vector<T> v) : faces(v) {}
 	void roll(char c) {
+		T tmp;
 		switch (c) {
 		case 'N':
-			T tmp = faces[0];
-			faces[0] = faces[1];
-			faces[1] = faces[5];
-			faces[5] = faces[3];
-			faces[3] = tmp;
-			break;
-		case 'E':
-			T tmp = faces[0];
-			faces[0] = faces[4];
-			faces[4] = faces[5];
-			faces[5] = faces[2];
-			faces[2] = tmp;
+			tmp = faces[TOP];
+			faces[TOP] = faces[FRONT];
+			faces[FRONT] = faces[BOTTOM];
+			faces[BOTTOM] = faces[BACK];
+			faces[BACK] = tmp;
 			break;
 		case 'S':
-			T tmp = faces[0];
-			faces[0] = faces[3];
-			faces[3] = faces[5];
-			faces[5] = faces[1];
-			faces[1] = tmp;
+			tmp = faces[TOP];
+			faces[TOP] = faces[BACK];
+			faces[BACK] = faces[BOTTOM];
+			faces[BOTTOM] = faces[FRONT];
+			faces[FRONT] = tmp;
+			break;
+		case 'E':
+			tmp = faces[TOP];
+			faces[TOP] = faces[LEFT];
+			faces[LEFT] = faces[BOTTOM];
+			faces[BOTTOM] = faces[RIGHT];
+			faces[RIGHT] = tmp;
 			break;
 		case 'W':
-			T tmp = faces[0];
-			faces[0] = faces[2];
-			faces[2] = faces[5];
-			faces[5] = faces[4];
-			faces[4] = tmp;
+			tmp = faces[TOP];
+			faces[TOP] = faces[RIGHT];
+			faces[RIGHT] = faces[BOTTOM];
+			faces[BOTTOM] = faces[LEFT];
+			faces[LEFT] = tmp;
 			break;
 		case 'R':
-			T tmp = faces[1];
-			faces[1] = faces[2];
-			faces[2] = faces[3];
-			faces[3] = faces[4];
-			faces[4] = tmp;
+			tmp = faces[FRONT];
+			faces[FRONT] = faces[RIGHT];
+			faces[RIGHT] = faces[BACK];
+			faces[BACK] = faces[LEFT];
+			faces[LEFT] = tmp;
 			break;
 		case 'L':
-			T tmp = faces[1];
-			faces[1] = faces[4];
-			faces[4] = faces[3];
-			faces[3] = faces[2];
-			faces[2] = tmp;
+			tmp = faces[FRONT];
+			faces[FRONT] = faces[LEFT];
+			faces[LEFT] = faces[BACK];
+			faces[BACK] = faces[RIGHT];
+			faces[RIGHT] = tmp;
 			break;
 		default:
 			std::cerr << "invalid char" << endl;
@@ -55,25 +56,24 @@ public:
 		}
 	}
 	T top() {
-		return faces[0];
+		return faces[TOP];
 	}
 	T front() {
-		return faces[1];
+		return faces[FRONT];
 	}
 	T left() {
-		return faces[2];
+		return faces[LEFT];
 	}
 	T back() {
-		return faces[3];
+		return faces[BACK];
 	}
 	T right() {
-		return faces[4];
+		return faces[RIGHT];
 	}
 	T bottom() {
-		return faces[5];
+		return faces[BOTTOM];
 	}
 private:
-	std::vector<T> faces(6);
+	std::vector<T> faces;
+	static constexpr int TOP = 0, FRONT = 1, RIGHT = 2, LEFT = 3, BACK = 4, BOTTOM = 5;
 };
-
-
