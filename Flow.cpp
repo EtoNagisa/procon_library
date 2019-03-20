@@ -89,7 +89,7 @@ struct MinCostFlow {
 		int res = 0;
 		while (f > 0) {
 			std::priority_queue<P, std::vector<P>, std::greater<P>> que;
-			fill_n(dist, n, std::numeric_limits<long long>::max());
+			std::fill_n(dist.begin(), n, std::numeric_limits<long long>::max());
 			dist[s] = 0;
 			que.push({ 0,s });
 			while (!que.empty()) {
