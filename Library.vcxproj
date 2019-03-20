@@ -32,6 +32,7 @@
     <ClCompile Include="LIS.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Mint.cpp" />
+    <ClCompile Include="FMT.cpp" />
     <ClCompile Include="Scc.cpp" />
     <ClCompile Include="SegmentTree.cpp" />
     <ClCompile Include="Template.cpp" />

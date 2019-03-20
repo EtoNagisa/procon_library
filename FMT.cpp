@@ -2,7 +2,6 @@
 
 template <long long mod, long long root>
 class NTT {
-
 public:
 	static constexpr long long mod_pow(long long a, long long n) {
 		long long res = 1;
@@ -30,7 +29,7 @@ public:
 					v[j] = t1 + t2;
 					if (v[j] >= mod)v[j] -= mod;
 					v[k] = w * (t1 - t2 + mod) % mod;
-					(w *= r) %= mod;
+					w = w * r%mod;
 				}
 			}
 		}
@@ -50,7 +49,7 @@ public:
 					if (v[j] >= mod)v[j] -= mod;
 					v[k] = t1 - t2;
 					if (v[k] < 0)v[k] += mod;
-					(w *= r) %= mod;
+					w = w * r%mod;
 				}
 			}
 		}
@@ -77,7 +76,7 @@ static std::vector<long long> convolution_mod(const std::vector<long long> &p, c
 	std::vector<long long> res1 = NTT<m1, 3>::convolution(p, q),
 		res2 = NTT<m2, 3>::convolution(p, q);
 	int sz = res1.size();
-	long long minv = NTT<m2, 3>::mod_inv(m1);
+	constexpr long long minv = NTT<m2, 3>::mod_inv(m1);
 	std::vector<long long> ret(sz);
 	for (int i = 0; i < sz; ++i) {
 		long long x0 = res1[i],
