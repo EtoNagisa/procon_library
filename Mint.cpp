@@ -63,9 +63,9 @@ template<int mod, bool isPrime> std::istream& operator >> (std::istream &is, Min
 
 template<int mod>
 constexpr Mint<mod, true> inv(const Mint<mod, true> &m) {
-	ll a = m.get(), b = mod, u = 1, v = 0;
+	long long a = m.get(), b = mod, u = 1, v = 0;
 	while (b) {
-		ll t = a / b;
+		long long t = a / b;
 		a -= t * b; std::swap(a, b);
 		u -= t * v; std::swap(u, v);
 	}
