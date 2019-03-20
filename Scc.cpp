@@ -21,7 +21,7 @@ struct Scc {
 
 	void dfs(int v) {
 		visited[v] = true;
-		for (int i = 0; i < g[v].size(); ++i) {
+		for (int i = 0; i < (int)g[v].size(); ++i) {
 			if (!visited[g[v][i]])dfs(g[v][i]);
 		}
 		num.push_back(v);
@@ -30,7 +30,7 @@ struct Scc {
 	void rdfs(int v, int k) {
 		visited[v] = true;
 		cmp[v] = k;
-		for (int i = 0; i < rg[v].size(); ++i) {
+		for (int i = 0; i < (int)rg[v].size(); ++i) {
 			if (!visited[rg[v][i]])rdfs(rg[v][i], k);
 		}
 	}

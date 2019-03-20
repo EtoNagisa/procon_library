@@ -5,7 +5,7 @@ public:
 	std::pair<long long, long long> calc(const std::vector<long long> &r, const std::vector<long long> &m) {
 		assert(r.size() == m.size());
 		long long R = 0, M = 1;
-		for (int i = 0; i < r.size(); ++i) {
+		for (int i = 0; i < (int)r.size(); ++i) {
 			std::pair<long long, long long> p = calc(R, M, r[i], m[i]);
 			if (p.second == -1)return std::make_pair(0, -1);
 			R = p.first;

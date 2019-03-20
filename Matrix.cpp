@@ -29,7 +29,7 @@ Matrix mult(Matrix  a, Matrix b) {//a:n*m matrix,b:m*l matrix
 
 Matrix fact(Matrix a, int n) {
 	Matrix  e(a.size(), std::vector<long long>(a.size(), 0));
-	for (int i = 0; i < a.size(); ++i) {
+	for (int i = 0; i < (int)a.size(); ++i) {
 		e[i][i] = 1;
 	}
 	while (n >= 1) {

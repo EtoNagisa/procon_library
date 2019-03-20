@@ -15,7 +15,7 @@ std::vector<long long> dijkstra(const Graph &g, int src) {
 		auto p = q.top(); q.pop();
 		int v = p.second;
 		if (p.first > d[v]) continue;
-		for (int i = 0; i < g[v].size(); ++i) {
+		for (int i = 0; i < (int)g[v].size(); ++i) {
 			Edge e = g[v][i];
 			if (d[e.to] > d[v] + e.weight) {
 				d[e.to] = d[v] + e.weight;

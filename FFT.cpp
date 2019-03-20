@@ -1,9 +1,10 @@
 #include "bits/stdc++.h"
 
-typedef std::complex<long double> Comp;
+using real_t = long double;
+typedef std::complex<real_t> Comp;
 long double PI = acos(-1);
 class FFT {
-	
+
 	//Cooley-Tukey,radix-2,decimation-in-Frequency,in-place
 	static void fft(std::vector<Comp> &v) {
 		int n = (int)v.size();
@@ -44,14 +45,14 @@ public:
 		int a = p.size(), b = q.size();
 		while (n < a + b)n <<= 1;
 		std::vector<Comp> cp(n), cq(n);
-		for (int i = 0; i < a; ++i)cp[i] = Comp(p[i], 0);
-		for (int i = 0; i < b; ++i)cq[i] = Comp(q[i], 0);
+		for (int i = 0; i < a; ++i)cp[i] = Comp((real_t)p[i], 0);
+		for (int i = 0; i < b; ++i)cq[i] = Comp((real_t)q[i], 0);
 		fft(cp);
 		fft(cq);
 		for (int i = 0; i < n; i++)cp[i] *= cq[i];
 		ifft(cp);
 		std::vector<long long> ret(n);
-		for (int i = 0; i < n; ++i)ret[i] = (cp[i].real() + 0.5);
+		for (int i = 0; i < n; ++i)ret[i] = (long long)(cp[i].real() + 0.5);
 		return ret;
 	}
 };

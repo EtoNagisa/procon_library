@@ -50,6 +50,6 @@ private:
 	}
 
 	int k;
-	static constexpr int m = 1e9 + 7;
+	static constexpr int m = 1000000007;
 	std::vector<long long> coe, term;
 };

@@ -1,7 +1,7 @@
 
 #include "bits/stdc++.h"
 
-struct Edge { int to, cap, rev, cost; };
+struct Edge { int to; long long cap; int rev;long long cost; };
 typedef std::vector<Edge> Edges;
 typedef std::vector<Edges> Graph;
 
@@ -26,7 +26,7 @@ struct MaxFlow {
 		q.push(s);
 		while (!q.empty()) {
 			int v = q.front(); q.pop();
-			for (int i = 0; i < g[v].size(); i++) {
+			for (int i = 0; i < (int)g[v].size(); i++) {
 				Edge &e = g[v][i];
 				if (e.cap > 0 && level[e.to] < 0) {
 					level[e.to] = level[v] + 1;
@@ -37,7 +37,7 @@ struct MaxFlow {
 	}
 	long long dfs(int v, int t, long long f) {
 		if (v == t)return f;
-		for (int &i = iter[v]; i < g[v].size(); i++) {
+		for (int &i = iter[v]; i < (int)g[v].size(); i++) {
 			Edge &e = g[v][i];
 			if (e.cap > 0 && level[v] < level[e.to]) {
 				long long d = dfs(e.to, t, std::min(f, (long long)e.cap));
@@ -56,7 +56,7 @@ struct MaxFlow {
 			bfs(s);
 			if (level[t] < 0)return flow;
 			std::fill(iter.begin(), iter.end(), 0);
-			int f;
+			long long f;
 			while ((f = dfs(s, t, std::numeric_limits<long long> ::max())) > 0) {
 				flow += f;
 			}
@@ -68,10 +68,11 @@ struct MaxFlow {
 /////////////////////////////////////////////////////////
 
 struct MinCostFlow {
-	using P = std::pair<int, int>;
+	using P = std::pair<long long, int>;
 
 	int n;
-	std::vector<int> h, dist, prevv, preve;
+	std::vector<long long> h, dist;
+	std::vector<int> prevv, preve;
 	Graph g;
 	MinCostFlow(int n_) : n(n_) {
 		h.resize(n, 0);
@@ -86,7 +87,7 @@ struct MinCostFlow {
 	}
 
 	long long min_cost_flow(int s, int t, long long f) {
-		int res = 0;
+		long long res = 0;
 		while (f > 0) {
 			std::priority_queue<P, std::vector<P>, std::greater<P>> que;
 			std::fill_n(dist.begin(), n, std::numeric_limits<long long>::max());
@@ -96,7 +97,7 @@ struct MinCostFlow {
 				P p = que.top(); que.pop();
 				int v = p.second;
 				if (dist[v] < p.first)continue;
-				for (int i = 0; i < g[v].size(); i++) {
+				for (int i = 0; i < (int)g[v].size(); i++) {
 					Edge &e = g[v][i];
 					if (e.cap > 0 && dist[e.to] > dist[v] + e.cost + h[v] - h[e.to]) {
 						dist[e.to] = dist[v] + e.cost + h[v] - h[e.to];

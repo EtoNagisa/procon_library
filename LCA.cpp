@@ -8,7 +8,7 @@ struct LCA {
 	std::vector<int> depth;//depth[i]:depth of i-th node
 
 	LCA(std::vector<std::vector<int>> &graph, int _n, int root)
-		:n(_n), depth(n), parent(n, std::vector<int>(log2(n) + 1, -1)) {
+		:n(_n), depth(n), parent(n, std::vector<int>((int)log2(n) + 1, -1)) {
 		dfs(graph, root, -1, 0);
 		for (int k = 0; k<int(log2(n)); ++k) {
 			for (int i = 0; i < n; ++i) {
@@ -22,7 +22,7 @@ struct LCA {
 	void dfs(const std::vector<std::vector<int>> &graph, int v, int p, int d) {//graph,current node,previous node,depth
 		depth[v] = d;
 		parent[v][0] = p;
-		for (int i = 0; i < graph[v].size(); ++i) {
+		for (int i = 0; i < (int)graph[v].size(); ++i) {
 			if (graph[v][i] != p)dfs(graph, graph[v][i], v, d + 1);
 		}
 	}
@@ -34,7 +34,7 @@ struct LCA {
 			if (1 << i & dif)v = parent[v][i];
 		}
 		if (v == w)return v;
-		for (int i = log2(n) - 1; i >= 0; --i) {
+		for (int i = (int)log2(n) - 1; i >= 0; --i) {
 			if (parent[v][i] != parent[w][i] && parent[v][i] != -1) {
 				v = parent[v][i];
 				w = parent[w][i];
