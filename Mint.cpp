@@ -74,17 +74,17 @@ constexpr Mint<mod, true> inv(const Mint<mod, true> &m) {
 
 template<int mod, bool isPrime>
 constexpr Mint<mod, isPrime> operator +(long long lhs, const Mint<mod, isPrime> &a) {
-	Mint<mod, isPrime>(lhs + a.get());
+	return Mint<mod, isPrime>(lhs + a.get());
 }
 
 template<int mod, bool isPrime>
 constexpr Mint<mod, isPrime> operator -(long long lhs, const Mint<mod, isPrime> &a) {
-	Mint<mod, isPrime>(lhs - a.get());
+	return Mint<mod, isPrime>(lhs - a.get());
 }
 
 template<int mod, bool isPrime>
 constexpr Mint<mod, isPrime> operator *(long long lhs, const Mint<mod, isPrime> &a) {
-	Mint<mod, isPrime>(lhs%mod * a.get());
+	return Mint<mod, isPrime>(lhs%mod * a.get());
 }
 
 constexpr int default_mod = 1000000007;
