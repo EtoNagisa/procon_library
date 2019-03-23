@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CRT.cpp" />
+    <ClCompile Include="Dice.cpp" />
     <ClCompile Include="FenwickTree.cpp" />
     <ClCompile Include="FFT.cpp" />
     <ClCompile Include="Flow.cpp" />
