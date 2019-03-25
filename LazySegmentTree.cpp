@@ -23,6 +23,45 @@ struct RARS {
 	}
 };
 
+struct RARm {
+	using t1 = long long;
+	using t2 = long long;
+	static constexpr t1 id1() {
+		return std::numeric_limits<t1> ::max() / 2;
+	}
+	static constexpr t2 id2() {
+		return 0ll;
+	}
+	static t1 op1(const t1 &a, const t1 &b) {
+		return std::min(a, b);
+	}
+	static t1 op2(const t1 &a, const t2 &b) {
+		return a + b;
+	}
+	static t2 op3(const t2 &a, const t2 &b) {
+		return a + b;
+	}
+};
+
+struct RARM {
+	using t1 = long long;
+	using t2 = long long;
+	static constexpr t1 id1() {
+		return std::numeric_limits<t1> ::min() / 2;
+	}
+	static constexpr t2 id2() {
+		return 0ll;
+	}
+	static t1 op1(const t1 &a, const t1 &b) {
+		return std::max(a, b);
+	}
+	static t1 op2(const t1 &a, const t2 &b) {
+		return a + b;
+	}
+	static t2 op3(const t2 &a, const t2 &b) {
+		return a + b;
+	}
+};
 template<typename M>
 struct LazySegmentTree {
 
