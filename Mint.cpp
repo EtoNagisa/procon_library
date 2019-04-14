@@ -25,6 +25,9 @@ public:
 	constexpr bool operator == (const Mint &a) const {
 		return value == a.value;
 	}
+	constexpr bool operator != (const Mint& a) const {
+		return value != a.value;
+	}
 	constexpr Mint& operator =(const Mint &a) {
 		value = a.value;
 		return *this;
