@@ -1,11 +1,13 @@
 #include "bits/stdc++.h"
 
-typedef std::vector<std::vector<long long>> Matrix;
+template<typename T>
+using Matrix = std::vector<std::vector<T>>;
 
-Matrix add(Matrix a, Matrix b) {
+template<typename T>
+Matrix<T> add(const Matrix<T> &a, const Matrix<T> &b) {
 	int n = a.size(), m = a[0].size();
 	assert(a.size() == b.size() && a[0].size() == b[0].size());
-	Matrix res(n, std::vector<long long>(m, 0));
+	Matrix<T> res(n, std::vector<long long>(m, 0));
 	for (int i = 0; i < n; ++i) {
 		for (int j = 0; j < n; ++j) {
 			res[i][j] = a[i][j] + b[i][j];
@@ -14,9 +16,10 @@ Matrix add(Matrix a, Matrix b) {
 	return res;
 }
 
-Matrix mult(Matrix  a, Matrix b) {//a:n*m matrix,b:m*l matrix
+template<typename T>
+Matrix<T> mult(const Matrix<T>  &a, const Matrix<T> &b) {//a:n*m matrix,b:m*l matrix
 	int n = a.size(), m = a[0].size(), l = b[0].size();
-	Matrix res(n, std::vector<long long>(l, 0));
+	Matrix<T> res(n, std::vector<long long>(l, 0));
 	for (int i = 0; i < n; ++i) {
 		for (int k = 0; k < m; ++k) {
 			for (int j = 0; j < l; ++j) {
@@ -27,8 +30,9 @@ Matrix mult(Matrix  a, Matrix b) {//a:n*m matrix,b:m*l matrix
 	return res;
 }
 
-Matrix fact(Matrix a, int n) {
-	Matrix  e(a.size(), std::vector<long long>(a.size(), 0));
+template<typename T>
+Matrix<T> fact(const Matrix<T> &a, long long n) {
+	Matrix<T>  e(a.size(), std::vector<long long>(a.size(), 0));
 	for (int i = 0; i < (int)a.size(); ++i) {
 		e[i][i] = 1;
 	}
