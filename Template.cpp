@@ -24,11 +24,12 @@ using vvl = vector<vl>;
 using pii = pair<int, int>;
 using pll = pair<ll, ll>;
 
-template <class T> bool chmin(T &a, const T &b) { if (a > b) { a = b; return true; } return false; }
-template <class T> bool chmax(T &a, const T &b) { if (a < b) { a = b; return true; } return false; }
+template <class T> bool chmin(T& a, const T& b) { if (a > b) { a = b; return true; } return false; }
+template <class T> bool chmax(T& a, const T& b) { if (a < b) { a = b; return true; } return false; }
+
 
 int main() {
 	cin.tie(0);
 	ios::sync_with_stdio(false);
-	
+
 }
