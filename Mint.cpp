@@ -91,5 +91,11 @@ constexpr Mint<mod, isPrime> operator *(long long lhs, const Mint<mod, isPrime>&
 	return Mint<mod, isPrime>(lhs % mod * a.get());
 }
 
+
+template<int mod>
+constexpr Mint<mod,true> operator /(long long lhs, const Mint<mod, true>& a) {
+	return Mint<mod, true>(lhs % mod * inv(a));
+}
+
 constexpr int default_mod = 1000000007;
 using mint = Mint<default_mod, true>;
