@@ -6,6 +6,8 @@ class Mint {
     ll value;
 
 public:
+    static std::vector<Mint> fact;
+    static std::vector<Mint> rfact;
     constexpr Mint() : value(0), dirty(false){};
     constexpr Mint(ll x) : value(x), dirty(true) {
         value %= mod;
@@ -61,7 +63,7 @@ public:
     }
 
     constexpr Mint &operator/=(const Mint &a) {
-        dirty = true;
+        initialized = true;
         return *this *= inv(a);
     }
     constexpr Mint operator+(const Mint &a) const {
@@ -75,6 +77,23 @@ public:
     }
     constexpr Mint operator/(const Mint &a) const {
         return Mint(*this) /= a;
+    }
+    static constexpr void init_comb(int n) {
+        fact.resize(n + 1);
+        rfact.resize(n + 1);
+        fact[0] = 1;
+        for (int i = 0; i < n; ++i) {
+            fact[i + 1] = fact[i] * (i + 1);
+        }
+        rfact[n] = inv(fact[n]);
+        for (int i = n - 1; i >= 0; --i) {
+            rfact[i] = rfact[i + 1] * (i + 1);
+        }
+    }
+    static constexpr Mint comb(int a, int b) {
+        if (a < 0 || b < 0 || a >= fact.size() || b >= fact.size() || a < b)
+            return Mint(0);
+        return fact[a] * rfact[b] * rfact[a - b];
     }
 };
 
@@ -124,6 +143,13 @@ template <int mod>
 constexpr Mint<mod, true> operator/(long long lhs, const Mint<mod, true> &a) {
     return Mint<mod, true>(lhs % mod * inv(a));
 }
+template <int mod, bool isPrime>
+std::vector<Mint<mod, isPrime>>
+    Mint<mod, isPrime>::fact = std::vector<Mint<mod, isPrime>>();
+
+template <int mod, bool isPrime>
+std::vector<Mint<mod, isPrime>>
+    Mint<mod, isPrime>::rfact = std::vector<Mint<mod, isPrime>>();
 
 constexpr int default_mod = 1000000007;
 using mint = Mint<default_mod, true>;
