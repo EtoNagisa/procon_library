@@ -19,25 +19,24 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CRT.cpp" />
-    <ClCompile Include="Dice.cpp" />
-    <ClCompile Include="FenwickTree.cpp" />
-    <ClCompile Include="FFT.cpp" />
-    <ClCompile Include="Flow.cpp" />
-    <ClCompile Include="Geometry.cpp" />
-    <ClCompile Include="Graph.cpp" />
-    <ClCompile Include="Kitamasa.cpp" />
-    <ClCompile Include="LazySegmentTree.cpp" />
-    <ClCompile Include="LCA.cpp" />
-    <ClCompile Include="LinkCutTree.cpp" />
-    <ClCompile Include="LIS.cpp" />
-    <ClCompile Include="Matrix.cpp" />
-    <ClCompile Include="Mint.cpp" />
-    <ClCompile Include="FMT.cpp" />
-    <ClCompile Include="Scc.cpp" />
-    <ClCompile Include="SegmentTree.cpp" />
+    <ClCompile Include="geometry\Geometry.cpp" />
+    <ClCompile Include="graph\Flow.cpp" />
+    <ClCompile Include="graph\Graph.cpp" />
+    <ClCompile Include="graph\LCA.cpp" />
+    <ClCompile Include="graph\Scc.cpp" />
+    <ClCompile Include="math\CRT.cpp" />
+    <ClCompile Include="math\FFT.cpp" />
+    <ClCompile Include="math\FMT.cpp" />
+    <ClCompile Include="math\Kitamasa.cpp" />
+    <ClCompile Include="math\Matrix.cpp" />
+    <ClCompile Include="misc\Dice.cpp" />
+    <ClCompile Include="misc\Mint.cpp" />
+    <ClCompile Include="string\aho_corasick.cpp" />
+    <ClCompile Include="structure\FenwickTree.cpp" />
+    <ClCompile Include="structure\LazySegmentTree.cpp" />
+    <ClCompile Include="structure\SegmentTree.cpp" />
+    <ClCompile Include="structure\UnionFind.cpp" />
     <ClCompile Include="Template.cpp" />
-    <ClCompile Include="UnionFind.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
