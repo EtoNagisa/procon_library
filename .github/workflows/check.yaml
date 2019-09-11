@@ -1,0 +1,11 @@
+name : check
+on : push
+jobs : 
+    check_if_formatted :
+        name : check if formatted
+        runs_on : ubuntu_18.04
+    steps : 
+      - name : install clang-format
+        run : sudo apt-get install clang-format
+      - name : execute format.sh
+        run : ./check_format.sh
