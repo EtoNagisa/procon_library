@@ -10,14 +10,16 @@ do
     clang-format -style=file $file > $TEMPORARY_FILE_NAME
     diff $file $TEMPORARY_FILE_NAME
     EXIT_CODE=$?
-    if [ $EXIT_CODE = 1 ]; then
+    if [ $EXIT_CODE = 0 ]; then
+        echo $file ok
+    elif [ $EXIT_CODE = 1]; then
         echo $file is not formatted
         rm $TEMPORARY_FILE_NAME
         exit 1
-    elif [ $EXIT_CODE = 2 ]; then
+    else
         echo unknown error
         exit 2
-    fi
+    fi 
 done
 rm $TEMPORARY_FILE_NAME
 echo ok

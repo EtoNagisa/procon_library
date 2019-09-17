@@ -10,9 +10,6 @@ jobs:
           - run: sudo apt autoremove
           - run: sudo apt update
           - run: sudo apt install -f clang-format
-          - run: which clang-format
-          - run: which clang-format-6.0
-          - run: export PATH=/usr/lib/llvm-6.0/bin:$PATH
           - run: clang-format --version
           - run: script/check_format.sh
     compile:
