@@ -12,7 +12,7 @@ do
     EXIT_CODE=$?
     if [ $EXIT_CODE = 0 ]; then
         echo $file ok
-    elif [ $EXIT_CODE = 1]; then
+    elif [ $EXIT_CODE = 1 ]; then
         echo $file is not formatted
         rm $TEMPORARY_FILE_NAME
         exit 1
