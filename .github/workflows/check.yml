@@ -9,5 +9,7 @@ jobs:
             run: sudo apt-get update
           - name: install clang-format
             run: sudo apt-get install clang-6.0
+          - name: ls
+            run: ls -la
           - name: execute format.sh
             run: ./check_format.sh
