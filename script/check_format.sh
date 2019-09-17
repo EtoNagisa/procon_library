@@ -15,3 +15,4 @@ do
     fi
 done
 rm $TEMPORARY_FILE_NAME
+echo ok

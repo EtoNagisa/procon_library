@@ -5,11 +5,15 @@ jobs:
         name: check format
         runs-on: ubuntu-18.04
         steps:
-          - name: checkout
-            uses: actions/checkout@v1.0.0
-          - name: apt update
-            run: sudo apt-get update
-          - name: install clang
-            run: sudo apt-get install clang-6.0
-          - name: execute format.sh
-            run: ./check_format.sh
+          - uses: actions/checkout@v1.0.0
+          - run: sudo apt-get update
+          - run: sudo apt-get install clang-6.0
+          - run: script/check_format.sh
+    build:
+        name: build
+        runs-on: ubuntu-18.04
+        steps:
+          - uses: actions/checkout@v1.0.0
+          - run: g++ --version
+          - run: script/build.sh
+            
