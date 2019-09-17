@@ -15,8 +15,12 @@ public:
   }
   constexpr Mint(const Mint &other) : value(other.value), dirty(other.dirty) {}
 
-  ll &get() { return value; }
-  ll get() const { return value; }
+  ll &get() {
+    return value;
+  }
+  ll get() const {
+    return value;
+  }
 
   constexpr Mint pow(ll n) {
     Mint ret(1), tmp(value);
@@ -28,9 +32,15 @@ public:
     }
     return ret;
   }
-  constexpr bool initialized() const { return dirty; }
-  constexpr bool operator==(const Mint &a) const { return value == a.value; }
-  constexpr bool operator!=(const Mint &a) const { return value != a.value; }
+  constexpr bool initialized() const {
+    return dirty;
+  }
+  constexpr bool operator==(const Mint &a) const {
+    return value == a.value;
+  }
+  constexpr bool operator!=(const Mint &a) const {
+    return value != a.value;
+  }
   constexpr Mint &operator=(const Mint &a) {
     value = a.value;
     dirty = true;
@@ -58,10 +68,18 @@ public:
     initialized = true;
     return *this *= inv(a);
   }
-  constexpr Mint operator+(const Mint &a) const { return Mint(*this) += a; }
-  constexpr Mint operator-(const Mint &a) const { return Mint(*this) -= a; }
-  constexpr Mint operator*(const Mint &a) const { return Mint(*this) *= a; }
-  constexpr Mint operator/(const Mint &a) const { return Mint(*this) /= a; }
+  constexpr Mint operator+(const Mint &a) const {
+    return Mint(*this) += a;
+  }
+  constexpr Mint operator-(const Mint &a) const {
+    return Mint(*this) -= a;
+  }
+  constexpr Mint operator*(const Mint &a) const {
+    return Mint(*this) *= a;
+  }
+  constexpr Mint operator/(const Mint &a) const {
+    return Mint(*this) /= a;
+  }
   static constexpr void init_comb(int n) {
     fact.resize(n + 1);
     rfact.resize(n + 1);

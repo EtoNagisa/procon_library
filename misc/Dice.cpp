@@ -53,12 +53,24 @@ public:
       abort();
     }
   }
-  T top() { return faces[TOP]; }
-  T front() { return faces[FRONT]; }
-  T left() { return faces[LEFT]; }
-  T back() { return faces[BACK]; }
-  T right() { return faces[RIGHT]; }
-  T bottom() { return faces[BOTTOM]; }
+  T top() {
+    return faces[TOP];
+  }
+  T front() {
+    return faces[FRONT];
+  }
+  T left() {
+    return faces[LEFT];
+  }
+  T back() {
+    return faces[BACK];
+  }
+  T right() {
+    return faces[RIGHT];
+  }
+  T bottom() {
+    return faces[BOTTOM];
+  }
 
 private:
   std::vector<T> faces;

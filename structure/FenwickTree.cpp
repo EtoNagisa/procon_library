@@ -3,7 +3,9 @@
 // 0-indexed
 class FenwickTree {
 public:
-  FenwickTree(int _n) : n(_n) { v.resize(_n + 1, 0); }
+  FenwickTree(int _n) : n(_n) {
+    v.resize(_n + 1, 0);
+  }
 
   void add(int pos, long long val) {
     pos++;
@@ -12,7 +14,9 @@ public:
   }
 
   // sum [l, r]
-  long long sum(int l, int r) { return sum(r) - sum(l - 1); }
+  long long sum(int l, int r) {
+    return sum(r) - sum(l - 1);
+  }
 
   // sum [0,pos]
   long long sum(int pos) {

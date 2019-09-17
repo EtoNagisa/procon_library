@@ -2,14 +2,22 @@
 
 struct RMQ {
   using t = long long;
-  constexpr static t id() { return std::numeric_limits<t>::min(); }
-  static t op(const t &a, const t &b) { return std::max(a, b); }
+  constexpr static t id() {
+    return std::numeric_limits<t>::min();
+  }
+  static t op(const t &a, const t &b) {
+    return std::max(a, b);
+  }
 };
 
 struct RmQ {
   using t = long long;
-  constexpr static t id() { return std::numeric_limits<t>::max(); }
-  static t op(const t &a, const t &b) { return std::min(a, b); }
+  constexpr static t id() {
+    return std::numeric_limits<t>::max();
+  }
+  static t op(const t &a, const t &b) {
+    return std::min(a, b);
+  }
 };
 
 template <typename M> struct SegmentTree {
@@ -42,8 +50,12 @@ template <typename M> struct SegmentTree {
       nodes[k] = M::op(nodes[2 * k + 1], nodes[2 * k + 2]);
     }
   }
-  T get(int k) { return nodes[k + n - 1]; }
-  T query(int a, int b) { return query(a, b, 0, 0, n); }
+  T get(int k) {
+    return nodes[k + n - 1];
+  }
+  T query(int a, int b) {
+    return query(a, b, 0, 0, n);
+  }
 
 private:
   T query(int a, int b, int k, int l, int r) {

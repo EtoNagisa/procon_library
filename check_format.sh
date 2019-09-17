@@ -12,3 +12,5 @@ do
         exit 1
     fi
 done
+
+rm $TEMPORARY_FILE_NAME

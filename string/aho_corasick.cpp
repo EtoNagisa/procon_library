@@ -72,7 +72,9 @@ public:
     }
   }
 
-  size_t size() const { return cnt; }
+  size_t size() const {
+    return cnt;
+  }
   size_t next(size_t now, char c) const {
     size_t t = static_cast<size_t>(c - Character::min_char);
     while (nodes[now].next[t] == invalid_index)
