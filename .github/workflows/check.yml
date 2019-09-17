@@ -6,9 +6,9 @@ jobs:
         runs-on: ubuntu-18.04
         steps:
           - uses: actions/checkout@v1.0.0
-          - run: sudo apt-get autoclean
-          - run: sudo apt-get clean
           - run: sudo apt-get update
+          - run: sudo apt-get remove clang-6.0
+          - run: sudo att-get install clang-6.0
           - run: sudo apt-get install clang-format-6.0      
           - run: export PATH=/usr/lib/llvm-6.0/bin
           - run: clang-format --version
