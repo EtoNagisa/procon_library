@@ -3,10 +3,9 @@ find|grep .cpp
 
 for file in `find|grep .cpp`
 do
-    echo $file
-    
+    echo compiling $file
     if ! g++ -std=c++14 -c $file -o /dev/null ; then
-        echo build error on $file
+        echo compile error on $file
         exit 1
     fi
     echo ok

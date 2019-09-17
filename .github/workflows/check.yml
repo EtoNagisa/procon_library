@@ -9,8 +9,8 @@ jobs:
           - run: sudo apt-get update
           - run: sudo apt-get install clang-6.0
           - run: script/check_format.sh
-    build:
-        name: build
+    compile:
+        name: compile
         runs-on: ubuntu-18.04
         steps:
           - uses: actions/checkout@v1.0.0
