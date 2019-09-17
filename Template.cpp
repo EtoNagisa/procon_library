@@ -39,6 +39,6 @@ template <class T> bool chmax(T &a, const T &b) {
 }
 
 int main() {
-  cin.tie(0);
+    cin.tie(0);
   ios::sync_with_stdio(false);
 }
