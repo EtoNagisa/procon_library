@@ -8,11 +8,13 @@ jobs:
           - uses: actions/checkout@v1.0.0
     apt_update:
         name: apt update
+        runs-on: ubuntu-18.04
         steps:
           - run: sudo apt-get update
     install_clang:
         name: install clang-format
         needs: apt_update
+        runs-on: ubuntu-18.04
         steps:
           - run: sudo apt-get install clang-6.0
     check_if_formatted: 
