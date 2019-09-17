@@ -6,9 +6,8 @@ jobs:
         runs-on: ubuntu-18.04
         steps:
           - uses: actions/checkout@v1.0.0
-          - run: sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu bionic main restricted universe multiverse"
-          - run: sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu bionic-security main restricted universe multiverse"
-          - run: sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse"
+          - run: sudo apt remove -y clang-6.0 libclang-common-6.0-dev libclang1-6.0 libllvm6.0
+          - run: sudo apt autoremove
           - run: sudo apt update
           - run: sudo apt install -f clang-format-6.0      
           - run: export PATH=/usr/lib/llvm-6.0/bin
