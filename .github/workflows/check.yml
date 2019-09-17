@@ -3,18 +3,16 @@ on: push
 jobs: 
     check_format: 
         name: check format
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-16.04
         steps:
           - uses: actions/checkout@v1.0.0
           - run: sudo apt-get update
-          - run: sudo apt-get install clang-6.0
-          - run: /usr/lib/llvm-6.0/bin/clang-format --version
-          - run: export PATH=/usr/lib/llvm-6.0/bin:$PATH
+          - run: sudo apt-get install clang-format
           - run: clang-format --version
           - run: script/check_format.sh
     compile:
         name: compile
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-16.04
         steps:
           - uses: actions/checkout@v1.0.0
           - run: g++ --version
