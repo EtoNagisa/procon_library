@@ -9,6 +9,7 @@ jobs:
           - run: sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu bionic main restricted universe multiverse"
           - run: sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu bionic-security main restricted universe multiverse"
           - run: sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse"
+          - run: sudo apt update
           - run: sudo apt install -f clang-format-6.0      
           - run: export PATH=/usr/lib/llvm-6.0/bin
           - run: clang-format --version
