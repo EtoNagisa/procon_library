@@ -10,6 +10,6 @@ jobs:
           - name: apt update
             run: sudo apt-get update
           - name: install clang
-            run: sudo apt-get instlal clang-6.0
+            run: sudo apt-get install clang-6.0
           - name: execute format.sh
             run: ./check_format.sh
