@@ -6,19 +6,19 @@ jobs:
         runs-on: ubuntu-18.04
         steps:
           - uses: actions/checkout@v1.0.0
-    apt update:
+    apt_update:
         name: apt update
         steps:
           - run: sudo apt-get update
-    install clang:
+    install_clang:
         name: install clang-format
-        needs: apt update
+        needs: apt_update
         steps:
           - run: sudo apt-get install clang-6.0
     check_if_formatted: 
         name: check if formatted
         runs-on: ubuntu-18.04
-        needs: install clang
+        needs: install_clang
         steps:
           - name: execute format.sh
             run: ./check_format.sh
