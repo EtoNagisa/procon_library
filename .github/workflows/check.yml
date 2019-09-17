@@ -6,7 +6,7 @@ jobs:
         runs-on: ubuntu-18.04
         steps:
           - name: checkout
-            used: actions/checkout@v1.0.0
+            uses: actions/checkout@v1.0.0
           - name: apt update
             run: sudo apt-get update
           - name: install clang
