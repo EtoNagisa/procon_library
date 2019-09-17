@@ -15,5 +15,5 @@ jobs:
         steps:
           - uses: actions/checkout@v1.0.0
           - run: g++ --version
-          - run: script/build.sh
+          - run: script/compile.sh
             
