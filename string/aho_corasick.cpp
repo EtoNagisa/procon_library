@@ -35,7 +35,7 @@ public:
         for (size_t i = 0; i < dict.size(); ++i) {
             size_t now = 0;
             for (size_t j = 0; j < dict[i].size(); ++j) {
-                size_t t = static_cast<size_t>(dict[i][j] - Character::min_char);
+                size_t t = static_cast<size_t>(dict[i][j] - character::min_char);
                 if (nodes[now].next[t] == invalid_index) {
                     size_t next = size();
                     add_node();
