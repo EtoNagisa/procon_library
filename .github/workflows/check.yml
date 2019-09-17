@@ -9,7 +9,7 @@ jobs:
           - run: sudo apt-get update
           - run: sudo apt-get install clang-6.0
           - run: export PATH=/usr/lib/llvm-6.0/bin:$PATH
-          - run: clang-format-6.0 --version
+          - run: clang-format --version
           - run: script/check_format.sh
     compile:
         name: compile

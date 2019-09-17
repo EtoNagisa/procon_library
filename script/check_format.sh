@@ -7,7 +7,7 @@ done
 
 for file in `find|grep .cpp`
 do
-    clang-format-6.0 -style=file $file > $TEMPORARY_FILE_NAME
+    clang-format -style=file $file > $TEMPORARY_FILE_NAME
     diff $file $TEMPORARY_FILE_NAME
     EXIT_CODE=$?
     if [ $EXIT_CODE = 1 ]; then
