@@ -87,5 +87,8 @@
     <ClCompile Include="geometry\Geometry.cpp">
       <Filter>ソース ファイル\geometry</Filter>
     </ClCompile>
+    <ClCompile Include="structure\muitiset.cpp">
+      <Filter>ソース ファイル\structure</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
