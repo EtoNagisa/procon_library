@@ -1,4 +1,4 @@
 for file in `find|grep .cpp`
 do
-    clang-format -i $file >& /dev/null
+    clang-format -style=file -i $file >& /dev/null
 done
