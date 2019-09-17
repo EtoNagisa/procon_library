@@ -7,11 +7,19 @@ done
 
 for file in `find|grep .cpp`
 do
-    clang-format -style=file $file > $TEMPORARY_FILE_NAME >& /dev/null
-    if diff $file $TEMPORARY_FILE_NAME >& /dev/null; then
+    clang-format -style=file $file > $TEMPORARY_FILE_NAME
+    diff $file $TEMPORARY_FILE_NAME
+    EXIT_CODE=$?
+    if [ $EXIT_CODE = 0 ]; then
+        echo $file ok
+    elif [ $EXIT_CODE = 1]; then
         echo $file is not formatted
         rm $TEMPORARY_FILE_NAME
         exit 1
-    fi
+    else
+        echo unknown error
+        exit 2
+    fi 
 done
 rm $TEMPORARY_FILE_NAME
+echo ok

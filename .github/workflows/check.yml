@@ -1,15 +1,21 @@
 name: check
 on: push
-jobs: 
-    check_if_formatted: 
-        name: check if formatted
+jobs:
+    check_format: 
+        name: check format
         runs-on: ubuntu-18.04
         steps:
-          - run: sudo apt-get update
-          - name: install clang-format
-            run: sudo apt-get install clang-6.0
-          - run: ls -la
           - uses: actions/checkout@v1.0.0
-          - run: ls -la
-          - name: execute format.sh
-            run: ./check_format.sh
+          - run: sudo apt remove -y clang-6.0 libclang-common-6.0-dev libclang1-6.0 libllvm6.0
+          - run: sudo apt autoremove
+          - run: sudo apt update
+          - run: sudo apt install -f clang-format
+          - run: clang-format --version
+          - run: script/check_format.sh
+    compile:
+        name: compile
+        runs-on: ubuntu-18.04
+        steps:
+          - uses: actions/checkout@v1.0.0
+          - run: g++ --version
+          - run: script/compile.sh
