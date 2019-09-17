@@ -6,6 +6,7 @@ jobs:
         runs-on: ubuntu-18.04
         steps:
           - uses: actions/checkout@v1.0.0
+          - run: sudo apt-get autoclean
           - run: sudo apt-get update
           - run: sudo apt-get remove clang-6.0
           - run: sudo apt-get install -f clang-6.0
