@@ -8,6 +8,7 @@ jobs:
           - uses: actions/checkout@v1.0.0
           - run: sudo apt-get update
           - run: sudo apt-get install clang-6.0
+          - run: /usr/lib/llvm-6.0/bin/clang-format --version
           - run: export PATH=/usr/lib/llvm-6.0/bin:$PATH
           - run: clang-format --version
           - run: script/check_format.sh
