@@ -7,8 +7,6 @@ jobs:
         steps:
           - uses: actions/checkout@v1.0.0
           - run: sudo apt-get update
-          - run: sudo apt-get install clang-6.0
-          - run: which clang-format
           - run: which clang-format-6.0
           - run: sudo apt-get install clang-format
           - run: clang-format --version
