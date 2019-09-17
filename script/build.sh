@@ -1,4 +1,7 @@
 #/bin/bash
+ls -la
+find|grep .cpp
+
 for file in `find|grep .cpp`
 do
     echo g++ -std=c++14 -c $file
