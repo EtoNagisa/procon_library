@@ -6,9 +6,7 @@ jobs:
         runs-on: ubuntu-18.04
         steps:
           - uses: actions/checkout@v1.0.0
-          - run: sudo apt-get install 1:6.0.1~svn334776-1~exp1~20190309042703.125
-          - run: sudo apt-get install -f clang-6.0
-          - run: sudo apt-get install -f clang-format-6.0      
+          - run: sudo apt install -f clang-format-6.0      
           - run: export PATH=/usr/lib/llvm-6.0/bin
           - run: clang-format --version
           - run: script/check_format.sh
