@@ -1,15 +1,24 @@
 name: check
 on: push
 jobs: 
+    checkout:
+        name: checkout repository
+        runs-on: ubuntu-18.04
+        steps:
+          - used: actions/checkout@v1.0.0
+    apt update:
+        name: apt update
+        steps:
+          - run: sudo apt-get update
+    install clang:
+        name: install clang-format
+        needs: apt update
+        steps:
+          - run: sudo apt-get install clang-6.0
     check_if_formatted: 
         name: check if formatted
         runs-on: ubuntu-18.04
+        needs: install clang
         steps:
-          - run: sudo apt-get update
-          - name: install clang-format
-            run: sudo apt-get install clang-6.0
-          - run: ls -la
-          - uses: actions/checkout@v1.0.0
-          - run: ls -la
           - name: execute format.sh
             run: ./check_format.sh
