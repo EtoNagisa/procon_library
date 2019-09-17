@@ -49,7 +49,7 @@ public:
       faces[RIGHT] = tmp;
       break;
     default:
-      std::cerr << "invalid char" << endl;
+      std::cerr << "invalid char" << std::endl;
       abort();
     }
   }
