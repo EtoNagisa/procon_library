@@ -6,9 +6,9 @@ jobs:
         runs-on: ubuntu-18.04
         steps:
           - uses: actions/checkout@v1.0.0
-          - run: echo deb http://archive.ubuntu.com/ubuntu bionic main restricted universe multiverse > /etc/apt/sources.list
-          - run: echo deb http://archive.ubuntu.com/ubuntu bionic-security main restricted universe multiverse >> /etc/apt/sources.list
-          - run: echo deb http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse >> /etc/apt/sources.list
+          - run: sudo echo deb http://archive.ubuntu.com/ubuntu bionic main restricted universe multiverse > /etc/apt/sources.list
+          - run: sudo echo deb http://archive.ubuntu.com/ubuntu bionic-security main restricted universe multiverse >> /etc/apt/sources.list
+          - run: sudo echo deb http://archive.ubuntu.com/ubuntu bionic-updates main restricted universe multiverse >> /etc/apt/sources.list
           - run: sudo apt-get update
           - run: sudo apt-get upgrade
           - run: sudo apt-get install clang-format
