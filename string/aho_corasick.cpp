@@ -18,7 +18,7 @@ public:
   struct PMA {
     size_t fail; // index of state correspond to fail suffix
     std::vector<size_t> next, accept;
-    PMA() : fail(0), next(Character::char_size, invalid_index) {}
+    PMA() : fail(0), next(character::char_size, invalid_index) {}
   };
   std::vector<PMA> nodes;
   size_t cnt;
@@ -34,7 +34,7 @@ public:
     for (size_t i = 0; i < dict.size(); ++i) {
       size_t now = 0;
       for (size_t j = 0; j < dict[i].size(); ++j) {
-        size_t t = static_cast<size_t>(dict[i][j] - Character::min_char);
+        size_t t = static_cast<size_t>(dict[i][j] - character::min_char);
         if (nodes[now].next[t] == invalid_index) {
           size_t next = size();
           add_node();
@@ -45,7 +45,7 @@ public:
       nodes[now].accept.push_back(i);
     }
     std::queue<size_t> q;
-    for (size_t i = 0; i < Character::char_size; ++i) {
+    for (size_t i = 0; i < character::char_size; ++i) {
       if (nodes[0].next[i] == invalid_index) {
         nodes[0].next[i] = 0;
       } else {
@@ -56,7 +56,7 @@ public:
     while (!q.empty()) {
       size_t p = q.front();
       q.pop();
-      for (size_t i = 0; i < Character::char_size; ++i) {
+      for (size_t i = 0; i < character::char_size; ++i) {
         if (nodes[p].next[i] != invalid_index) {
           size_t tmp = nodes[p].fail;
           while (nodes[tmp].next[i] == invalid_index) {
@@ -76,7 +76,7 @@ public:
     return cnt;
   }
   size_t next(size_t now, char c) const {
-    size_t t = static_cast<size_t>(c - Character::min_char);
+    size_t t = static_cast<size_t>(c - character::min_char);
     while (nodes[now].next[t] == invalid_index)
       now = nodes[now].fail;
     return nodes[now].next[t];
