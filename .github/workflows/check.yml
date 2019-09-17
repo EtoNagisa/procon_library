@@ -3,7 +3,7 @@ on: push
 jobs: 
     check_if_formatted: 
         name: check if formatted
-        runs_on: ubuntu_18.04
+        runs-on: ubuntu-18.04
         steps: 
           - name: install clang-format
             run: sudo apt-get install clang-format
