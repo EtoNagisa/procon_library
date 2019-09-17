@@ -5,7 +5,7 @@ jobs:
         name: checkout repository
         runs-on: ubuntu-18.04
         steps:
-          - used: actions/checkout@v1.0.0
+          - uses: actions/checkout@v1.0.0
     apt update:
         name: apt update
         steps:
