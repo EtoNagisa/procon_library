@@ -1,60 +1,47 @@
 #include "bits/stdc++.h"
-template <int mod, bool isPrime = false> class Mint {
+template <int mod, bool isPrime = false>
+class Mint {
   using ll = long long;
   bool dirty;
   ll value;
 
-public:
+ public:
   static std::vector<Mint> fact;
   static std::vector<Mint> rfact;
   constexpr Mint() : value(0), dirty(false){};
   constexpr Mint(ll x) : value(x), dirty(true) {
     value %= mod;
-    if (value < 0)
-      value += mod;
+    if (value < 0) value += mod;
   }
   constexpr Mint(const Mint &other) : value(other.value), dirty(other.dirty) {}
 
-  ll &get() {
-    return value;
-  }
-  ll get() const {
-    return value;
-  }
+  ll &get() { return value; }
+  ll get() const { return value; }
 
   constexpr Mint pow(ll n) {
     Mint ret(1), tmp(value);
     while (n) {
-      if (n & 1)
-        ret *= tmp;
+      if (n & 1) ret *= tmp;
       n >>= 1;
       tmp *= tmp;
     }
     return ret;
   }
-  constexpr bool initialized() const {
-    return dirty;
-  }
-  constexpr bool operator==(const Mint &a) const {
-    return value == a.value;
-  }
-  constexpr bool operator!=(const Mint &a) const {
-    return value != a.value;
-  }
+  constexpr bool initialized() const { return dirty; }
+  constexpr bool operator==(const Mint &a) const { return value == a.value; }
+  constexpr bool operator!=(const Mint &a) const { return value != a.value; }
   constexpr Mint &operator=(const Mint &a) {
     value = a.value;
     dirty = true;
     return *this;
   }
   constexpr Mint &operator+=(const Mint &a) {
-    if ((value += a.value) >= mod)
-      value -= mod;
+    if ((value += a.value) >= mod) value -= mod;
     dirty = true;
     return *this;
   }
   constexpr Mint &operator-=(const Mint &a) {
-    if ((value += mod - a.value) >= mod)
-      value -= mod;
+    if ((value += mod - a.value) >= mod) value -= mod;
     dirty = true;
     return *this;
   }
@@ -68,18 +55,10 @@ public:
     initialized = true;
     return *this *= inv(a);
   }
-  constexpr Mint operator+(const Mint &a) const {
-    return Mint(*this) += a;
-  }
-  constexpr Mint operator-(const Mint &a) const {
-    return Mint(*this) -= a;
-  }
-  constexpr Mint operator*(const Mint &a) const {
-    return Mint(*this) *= a;
-  }
-  constexpr Mint operator/(const Mint &a) const {
-    return Mint(*this) /= a;
-  }
+  constexpr Mint operator+(const Mint &a) const { return Mint(*this) += a; }
+  constexpr Mint operator-(const Mint &a) const { return Mint(*this) -= a; }
+  constexpr Mint operator*(const Mint &a) const { return Mint(*this) *= a; }
+  constexpr Mint operator/(const Mint &a) const { return Mint(*this) /= a; }
   static constexpr void init_comb(int n) {
     fact.resize(n + 1);
     rfact.resize(n + 1);
@@ -110,7 +89,8 @@ std::istream &operator>>(std::istream &is, Mint<mod, isPrime> &m) {
   return is;
 }
 
-template <int mod> constexpr Mint<mod, true> inv(const Mint<mod, true> &m) {
+template <int mod>
+constexpr Mint<mod, true> inv(const Mint<mod, true> &m) {
   long long a = m.get(), b = mod, u = 1, v = 0;
   while (b) {
     long long t = a / b;
@@ -145,12 +125,12 @@ constexpr Mint<mod, true> operator/(long long lhs, const Mint<mod, true> &a) {
   return Mint<mod, true>(lhs % mod * inv(a));
 }
 template <int mod, bool isPrime>
-std::vector<Mint<mod, isPrime>>
-    Mint<mod, isPrime>::fact = std::vector<Mint<mod, isPrime>>();
+std::vector<Mint<mod, isPrime>> Mint<mod, isPrime>::fact =
+    std::vector<Mint<mod, isPrime>>();
 
 template <int mod, bool isPrime>
-std::vector<Mint<mod, isPrime>>
-    Mint<mod, isPrime>::rfact = std::vector<Mint<mod, isPrime>>();
+std::vector<Mint<mod, isPrime>> Mint<mod, isPrime>::rfact =
+    std::vector<Mint<mod, isPrime>>();
 
 constexpr int default_mod = 1000000007;
 using mint = Mint<default_mod, true>;

@@ -1,13 +1,14 @@
 #include "bits/stdc++.h"
 
-template <typename Kty> struct _const_iterator {
-private:
+template <typename Kty>
+struct _const_iterator {
+ private:
   using _map = std::map<Kty, size_t>;
   using _iterator = typename _map::const_iterator;
   _iterator _it;
   size_t cnt;
 
-public:
+ public:
   _const_iterator() : cnt(0) {}
   _const_iterator(_iterator it) : _it(it), cnt(0) {}
   _const_iterator(const _const_iterator &) = default;
@@ -21,15 +22,11 @@ public:
   using pointer = const value_type *;
   using reference = const value_type &;
 
-  reference operator*() const {
-    return _it->first;
-  }
+  reference operator*() const { return _it->first; }
 
-  pointer operator->() const {
-    return &_it->first;
-  }
+  pointer operator->() const { return &_it->first; }
 
-private:
+ private:
   void increment() {
     ++cnt;
     if (cnt == (*_it).second) {
@@ -47,7 +44,7 @@ private:
     }
   }
 
-public:
+ public:
   _const_iterator &operator++() {
     increment();
     return *this;
@@ -74,31 +71,26 @@ public:
     return this->_it == rhs._it;
   }
 
-  bool operator!=(const _const_iterator &rhs) const {
-    return !(*this == rhs);
-  }
+  bool operator!=(const _const_iterator &rhs) const { return !(*this == rhs); }
 };
-template <typename Kt, class Ct = std::less<Kt>> class muitiset {
-public:
+template <typename Kt, class Ct = std::less<Kt>>
+class muitiset {
+ public:
   using key_type = Kt;
   using compare_type = Ct;
 
-private:
+ private:
   using _map = std::map<key_type, size_t, compare_type>;
   _map _count;
 
-public:
+ public:
   using const_iterator = _const_iterator<key_type>;
   using const_reverse_iterator =
       std::reverse_iterator<_const_iterator<key_type>>;
 
-  const_iterator begin() const {
-    return const_iterator(_count.begin());
-  }
+  const_iterator begin() const { return const_iterator(_count.begin()); }
 
-  const_iterator end() const {
-    return const_iterator(_count.end());
-  }
+  const_iterator end() const { return const_iterator(_count.end()); }
 
   const_reverse_iterator rbegin() const {
     return const_reverse_iterator(end());
@@ -113,9 +105,7 @@ public:
     itr = _count.end() ? 0 : itr->second;
   }
 
-  void insert(const key_type &val) noexcept {
-    _count[val]++;
-  }
+  void insert(const key_type &val) noexcept { _count[val]++; }
 
   void erase(const key_type &val) noexcept {
     if (_count.count(val) == 1) {
@@ -125,13 +115,9 @@ public:
     }
   }
 
-  void clear() noexcept {
-    _count.clear();
-  }
+  void clear() noexcept { _count.clear(); }
 
-  size_t size() const noexcept {
-    return _count.size();
-  }
+  size_t size() const noexcept { return _count.size(); }
 
   const_iterator lower_bound(const key_type &val) const {
     return const_iterator(_count.lower_bound(val));

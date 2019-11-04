@@ -1,12 +1,12 @@
 #include "bits/stdc++.h"
 
-template <long long mod, long long root> class NTT {
-public:
+template <long long mod, long long root>
+class NTT {
+ public:
   static constexpr long long mod_pow(long long a, long long n) {
     long long res = 1;
     while (n > 0) {
-      if (n & 1)
-        res = res * a % mod;
+      if (n & 1) res = res * a % mod;
       a = a * a % mod;
       n >>= 1;
     }
@@ -27,8 +27,7 @@ public:
         for (int j = i, k = i + m / 2; k < i + m; j++, k++) {
           long long t1 = v[j], t2 = v[k];
           v[j] = t1 + t2;
-          if (v[j] >= mod)
-            v[j] -= mod;
+          if (v[j] >= mod) v[j] -= mod;
           v[k] = w * (t1 - t2 + mod) % mod;
           w = w * r % mod;
         }
@@ -47,34 +46,27 @@ public:
         for (int j = i, k = i + m / 2; k < i + m; j++, k++) {
           long long t1 = v[j], t2 = w * v[k] % mod;
           v[j] = t1 + t2;
-          if (v[j] >= mod)
-            v[j] -= mod;
+          if (v[j] >= mod) v[j] -= mod;
           v[k] = t1 - t2;
-          if (v[k] < 0)
-            v[k] += mod;
+          if (v[k] < 0) v[k] += mod;
           w = w * r % mod;
         }
       }
     }
     long long n_inv = mod_inv(n);
-    for (int i = 0; i < n; ++i)
-      v[i] = v[i] * n_inv % mod;
+    for (int i = 0; i < n; ++i) v[i] = v[i] * n_inv % mod;
   }
   static std::vector<long long> convolution(const std::vector<long long> &p,
                                             const std::vector<long long> &q) {
     int n = 1;
     int a = p.size(), b = q.size();
-    while (n < a + b)
-      n <<= 1;
+    while (n < a + b) n <<= 1;
     std::vector<long long> cp(n), cq(n);
-    for (int i = 0; i < a; ++i)
-      cp[i] = p[i];
-    for (int i = 0; i < b; ++i)
-      cq[i] = q[i];
+    for (int i = 0; i < a; ++i) cp[i] = p[i];
+    for (int i = 0; i < b; ++i) cq[i] = q[i];
     fmt(cp);
     fmt(cq);
-    for (int i = 0; i < n; i++)
-      cp[i] = cp[i] * cq[i] % mod;
+    for (int i = 0; i < n; i++) cp[i] = cp[i] * cq[i] % mod;
     ifmt(cp);
     return cp;
   }
@@ -94,8 +86,7 @@ static std::vector<long long> convolution_mod(const std::vector<long long> &p,
   }
   return ret;
 }
-static std::vector<long long>
-convolution998244353(const std::vector<long long> &p,
-                     const std::vector<long long> &q) {
+static std::vector<long long> convolution998244353(
+    const std::vector<long long> &p, const std::vector<long long> &q) {
   return NTT<998244353, 3>::convolution(p, q);
 }

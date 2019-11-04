@@ -41,8 +41,7 @@ struct MaxFlow {
     }
   }
   long long dfs(int v, int t, long long f) {
-    if (v == t)
-      return f;
+    if (v == t) return f;
     for (int &i = iter[v]; i < (int)g[v].size(); i++) {
       Edge &e = g[v][i];
       if (e.cap > 0 && level[v] < level[e.to]) {
@@ -60,8 +59,7 @@ struct MaxFlow {
     long long flow = 0;
     for (;;) {
       bfs(s);
-      if (level[t] < 0)
-        return flow;
+      if (level[t] < 0) return flow;
       std::fill(iter.begin(), iter.end(), 0);
       long long f;
       while ((f = dfs(s, t, std::numeric_limits<long long>::max())) > 0) {
@@ -103,8 +101,7 @@ struct MinCostFlow {
         P p = que.top();
         que.pop();
         int v = p.second;
-        if (dist[v] < p.first)
-          continue;
+        if (dist[v] < p.first) continue;
         for (int i = 0; i < (int)g[v].size(); i++) {
           Edge &e = g[v][i];
           if (e.cap > 0 && dist[e.to] > dist[v] + e.cost + h[v] - h[e.to]) {
@@ -118,8 +115,7 @@ struct MinCostFlow {
       if (dist[t] == std::numeric_limits<long long>::max()) {
         return -1;
       }
-      for (int v = 0; v < n; v++)
-        h[v] += dist[v];
+      for (int v = 0; v < n; v++) h[v] += dist[v];
 
       long long d = f;
       for (int v = t; v != s; v = prevv[v]) {

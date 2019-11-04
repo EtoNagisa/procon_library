@@ -3,10 +3,10 @@
 struct Scc {
   int n;
   std::vector<std::vector<int>> g,
-      rg;               //逆向きのグラフ
-  std::vector<int> cmp, // cmp[i]:頂点iが属する強連結成分の番号
+      rg;                //逆向きのグラフ
+  std::vector<int> cmp,  // cmp[i]:頂点iが属する強連結成分の番号
       visited,
-      num; //帰りがけ順で頂点が入る
+      num;  //帰りがけ順で頂点が入る
   Scc(int N) {
     n = N;
     cmp.resize(n);
@@ -22,8 +22,7 @@ struct Scc {
   void dfs(int v) {
     visited[v] = true;
     for (int i = 0; i < (int)g[v].size(); ++i) {
-      if (!visited[g[v][i]])
-        dfs(g[v][i]);
+      if (!visited[g[v][i]]) dfs(g[v][i]);
     }
     num.push_back(v);
   }
@@ -32,20 +31,16 @@ struct Scc {
     visited[v] = true;
     cmp[v] = k;
     for (int i = 0; i < (int)rg[v].size(); ++i) {
-      if (!visited[rg[v][i]])
-        rdfs(rg[v][i], k);
+      if (!visited[rg[v][i]]) rdfs(rg[v][i], k);
     }
   }
   int calc() {
-    for (int i = 0; i < n; ++i)
-      visited[i] = false;
+    for (int i = 0; i < n; ++i) visited[i] = false;
     num.clear();
     for (int i = 0; i < n; ++i) {
-      if (!visited[i])
-        dfs(i);
+      if (!visited[i]) dfs(i);
     }
-    for (int i = 0; i < n; ++i)
-      visited[i] = false;
+    for (int i = 0; i < n; ++i) visited[i] = false;
     int k = 0;
     for (int i = num.size() - 1; i >= 0; --i) {
       if (!visited[num[i]]) {

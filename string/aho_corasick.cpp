@@ -12,11 +12,12 @@ struct general_char {
   static constexpr std::size_t char_size = 256;
   static constexpr char min_char = 0;
 };
-template <typename character> class aho_corasick {
-public:
+template <typename character>
+class aho_corasick {
+ public:
   static constexpr size_t invalid_index = -1;
   struct PMA {
-    size_t fail; // index of state correspond to fail suffix
+    size_t fail;  // index of state correspond to fail suffix
     std::vector<size_t> next, accept;
     PMA() : fail(0), next(character::char_size, invalid_index) {}
   };
@@ -27,7 +28,7 @@ public:
     cnt++;
   }
 
-public:
+ public:
   aho_corasick() : cnt(0) {}
   void build(const std::vector<std::string> &dict) {
     add_node();
@@ -72,13 +73,10 @@ public:
     }
   }
 
-  size_t size() const {
-    return cnt;
-  }
+  size_t size() const { return cnt; }
   size_t next(size_t now, char c) const {
     size_t t = static_cast<size_t>(c - character::min_char);
-    while (nodes[now].next[t] == invalid_index)
-      now = nodes[now].fail;
+    while (nodes[now].next[t] == invalid_index) now = nodes[now].fail;
     return nodes[now].next[t];
   }
   std::vector<std::vector<size_t>> match(const std::string &s) const {

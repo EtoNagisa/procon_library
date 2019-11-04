@@ -1,7 +1,7 @@
 #include "bits/stdc++.h"
 
 class Kitamasa {
-public:
+ public:
   Kitamasa(std::vector<long long> _coe, std::vector<long long> _term)
       : k(_coe.size()), coe(_coe), term(_term) {
     assert(_coe.size() == _term.size());
@@ -10,12 +10,10 @@ public:
     std::vector<long long> ret(k, 0);
     ret[0] = 1;
     int j = 63;
-    while (!(1ll << j & n))
-      j--;
+    while (!(1ll << j & n)) j--;
     for (int i = j; i >= 0; --i) {
       dbl(ret);
-      if (n & (1ll << i))
-        adv(ret);
+      if (n & (1ll << i)) adv(ret);
     }
     long long ans = 0;
     for (int i = 0; i < k; ++i) {
@@ -25,7 +23,7 @@ public:
     return ans;
   }
 
-private:
+ private:
   void adv(std::vector<long long> &v) {
     std::vector<long long> ret(k);
     ret[0] = 0;
